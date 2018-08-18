@@ -27,12 +27,17 @@ func Fetch() (*Info, error) {
 		}
 
 		importComment := strings.TrimSuffix(bp.ImportComment, "/")
-		if !strings.HasSuffix(importComment, p.Dir()) {
-			return nil, fmt.Errorf("invalid import comment %q in dir %q", importComment, p.Dir())
+		var repoCanonicalImportPath string
+		if p.Dir() == "." {
+			repoCanonicalImportPath = importComment
+		} else {
+			if !strings.HasSuffix(importComment, p.Dir()) {
+				return nil, fmt.Errorf("invalid import comment %q in dir %q", importComment, p.Dir())
+			}
+			repoCanonicalImportPath = strings.TrimSuffix(importComment, p.Dir())
+			repoCanonicalImportPath = strings.TrimSuffix(repoCanonicalImportPath, "/")
 		}
 
-		repoCanonicalImportPath := strings.TrimSuffix(importComment, p.Dir())
-		repoCanonicalImportPath = strings.TrimSuffix(repoCanonicalImportPath, "/")
 		return &Info{
 			CanonicalImportPath: repoCanonicalImportPath,
 		}, nil
