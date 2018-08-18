@@ -10,7 +10,8 @@
   version = "v1.7.0"
 
 [[projects]]
-  digest = "1:fc697e83e14592735b1c32c61ac0cc37b73dbaf727a1cd9f7bf9c7051ecc7b08"
+  branch = "master"
+  digest = "1:fbe76331c70b8e9cc3e26274246b9fc0f765aaa05839362981e1689a3626b21a"
   name = "github.com/golangci/golangci-lint"
   packages = [
     "pkg/exitcodes",
@@ -20,8 +21,7 @@
     "pkg/packages",
   ]
   pruneopts = "UT"
-  revision = "a2b901227c37337bce9860499a413db2b464481b"
-  version = "v1.10"
+  revision = "f81283f38df7ef7a1eb4e085a296887261b7b430"
 
 [[projects]]
   digest = "1:c658e84ad3916da105a761660dcaeb01e63416c8ec7bc62256a9b411a05fcd67"

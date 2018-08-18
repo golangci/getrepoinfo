@@ -27,7 +27,7 @@
 
 [[constraint]]
   name = "github.com/golangci/golangci-lint"
-  version = "1.10.0"
+  branch = "master"
 
 [[constraint]]
   name = "github.com/pkg/errors"
