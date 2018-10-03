@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"log"
 	"os"
 
@@ -10,14 +11,20 @@ import (
 )
 
 func main() {
-	if err := printRepoInfo(); err != nil {
+	repo := flag.String("repo", "", "repo path")
+	flag.Parse()
+	if *repo == "" {
+		log.Fatal("Set --repo flag")
+	}
+
+	if err := printRepoInfo(*repo); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func printRepoInfo() error {
+func printRepoInfo(repo string) error {
 	var ret interface{}
-	info, err := repoinfo.Fetch()
+	info, err := repoinfo.Fetch(repo)
 	if err != nil {
 		ret = struct {
 			Error string
