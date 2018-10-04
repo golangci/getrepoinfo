@@ -49,9 +49,10 @@ func Fetch(repo string) (*Info, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to extract alias")
 	}
-	if alias != "" {
+	if alias != "" && alias != repo {
 		return &Info{
-			CanonicalImportPath: alias,
+			CanonicalImportPath:       alias,
+			CanonicalImportPathReason: "alias found in import comments",
 		}, nil
 	}
 
@@ -69,7 +70,8 @@ func Fetch(repo string) (*Info, error) {
 
 			if strings.HasPrefix(impLower, repo+"/") {
 				return &Info{
-					CanonicalImportPath: imp[:len(repo)],
+					CanonicalImportPath:       imp[:len(repo)],
+					CanonicalImportPathReason: "found import of another case",
 				}, nil
 			}
 		}

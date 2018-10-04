@@ -1,5 +1,6 @@
 package repoinfo
 
 type Info struct {
-	CanonicalImportPath string
+	CanonicalImportPath       string
+	CanonicalImportPathReason string
 }
